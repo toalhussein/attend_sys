@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "25794681794",
+    "project_id": "attend-sys-b7472",
+    "storage_bucket": "attend-sys-b7472.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:25794681794:android:b2419de652438c5300545b",
+        "android_client_info": {
+          "package_name": "com.example.attend_sys"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCjYyCGX5XEjY8X3yZ5EHgMD-a1-14kUnU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
