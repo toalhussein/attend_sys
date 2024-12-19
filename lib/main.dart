@@ -49,6 +49,8 @@ class MyApp extends StatelessWidget {
 class LocalStorage {
   static late SharedPreferences userData;
 
+  LocalStorage._();
+
   static void initialize(SharedPreferences preferences) {
     userData = preferences;
   }
