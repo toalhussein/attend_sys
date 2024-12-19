@@ -9,7 +9,6 @@ import 'package:attend_sys/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import '../../../admin_feature/presentation/views/admin_view.dart';
 import '../../../user_feature/presentation/views/user_view.dart';
@@ -25,26 +24,6 @@ class _LoginPageState extends State<LoginPage> {
   final TextEditingController _workIdController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final GlobalKey<FormState> loginKey = GlobalKey<FormState>();
-
-  @override
-  void initState() {
-    checkPermission();
-    super.initState();
-  }
-
-  void checkPermission() async {
-    LocationPermission permission = await Geolocator.checkPermission();
-    if (permission == LocationPermission.denied) {
-      permission = await Geolocator.requestPermission();
-      if (permission == LocationPermission.denied) {
-        permission = await Geolocator.requestPermission();
-      }
-    }
-    if (permission == LocationPermission.deniedForever) {
-      permission = await Geolocator.requestPermission();
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<LoginCubit, LoginStates>(
