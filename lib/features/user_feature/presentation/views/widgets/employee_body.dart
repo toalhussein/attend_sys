@@ -1,4 +1,3 @@
-import 'package:attend_sys/features/user_feature/presentation/views/user_view.dart';
 import 'package:attend_sys/features/user_feature/presentation/views/widgets/attendance_card.dart';
 import 'package:flutter/material.dart';
 
@@ -11,7 +10,7 @@ class EmployeeBody extends StatelessWidget {
       child: Padding(
         padding: EdgeInsets.all(16.0),
         child: Column(
-          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
               'Welcome to the Attendance System',

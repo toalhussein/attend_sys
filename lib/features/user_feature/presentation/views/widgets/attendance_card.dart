@@ -9,13 +9,14 @@ class AttendanceCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      elevation: 4,
+      elevation: 8,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(12),
       ),
       child: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(24),
         child: Column(
+          spacing: 24,
           children: [
             InAndOurButton(
               onPressed: () {
@@ -27,6 +28,7 @@ class AttendanceCard extends StatelessWidget {
                 );
               },
               buttonName: 'In',
+              buttonColor: Colors.green,
             ),
             InAndOurButton(
               onPressed: () {
@@ -38,8 +40,8 @@ class AttendanceCard extends StatelessWidget {
                 );
               },
               buttonName: 'Out',
+              buttonColor: Colors.red,
             ),
-            const SizedBox(height: 16),
           ],
         ),
       ),
