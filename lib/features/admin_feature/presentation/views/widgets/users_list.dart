@@ -14,9 +14,9 @@ class UsersList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+    final FirebaseFirestore firestore = FirebaseFirestore.instance;
     return StreamBuilder(
-      stream: _firestore.collection('users').snapshots(),
+      stream: firestore.collection('users').snapshots(),
       builder: (context, users) {
         if (!users.hasData) {
           return const Center(child: Text('Loading'));
@@ -30,7 +30,7 @@ class UsersList extends StatelessWidget {
                 itemCount: users.data!.docs.length,
                 itemBuilder: (context, index) {
                   return StreamBuilder(
-                    stream: getRecordsStream(_firestore, users, index, value),
+                    stream: getRecordsStream(firestore, users, index, value),
                     builder: (context, snapshot) {
                       if (snapshot.hasError) {
                         return Center(child: Text('Error data'));
@@ -87,11 +87,11 @@ class UsersList extends StatelessWidget {
   }
 
   Stream<DocumentSnapshot<Map<String, dynamic>>> getRecordsStream(
-      FirebaseFirestore _firestore,
+      FirebaseFirestore firestore,
       AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> users,
       int index,
       DateTime value) {
-    return _firestore
+    return firestore
         .collection('users')
         .doc(users.data!.docs[index].id)
         .collection('records')

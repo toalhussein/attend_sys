@@ -8,7 +8,7 @@ class CreateUserPage extends StatefulWidget {
   const CreateUserPage({super.key});
 
   @override
-  _CreateUserPageState createState() => _CreateUserPageState();
+  State<CreateUserPage> createState() => _CreateUserPageState();
 }
 
 class _CreateUserPageState extends State<CreateUserPage> {
@@ -108,5 +108,4 @@ class _CreateUserPageState extends State<CreateUserPage> {
       ),
     );
   }
-  
 }

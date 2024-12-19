@@ -1,7 +1,4 @@
-// ignore_for_file: library_private_types_in_public_api
-
 import 'package:attend_sys/core/widgets/custom_logout_icon.dart';
-import 'package:attend_sys/features/super_admin_feature/views/super_admin.dart';
 import 'package:attend_sys/features/super_admin_feature/views/widgets/create_user.dart';
 import 'package:attend_sys/features/super_admin_feature/views/widgets/custom_navigation_tile.dart';
 import 'package:attend_sys/features/super_admin_feature/views/widgets/delete_user.dart';
@@ -37,34 +34,35 @@ class SuperAdminDrawer extends StatelessWidget {
             icon: Icons.delete,
             page: DeleteUserPage(),
           ),
-          ListTile(
-            leading: const Icon(Icons.analytics),
-            title: const Text('Analysis Sheet'),
-            onTap: () {
-              showDialog(
+          CustomNavigationTile(
+            title: 'Analysis Sheet',
+            icon: Icons.analytics,
+            onTap: () async {
+              await showDialog(
                 context: context,
                 builder: (context) => const FeatureNotAvailableDialog(),
               );
             },
           ),
-          ListTile(
-            leading: const Icon(Icons.person),
-            title: const Text('User Details'),
-            onTap: () {
-              Navigator.push(
+          CustomNavigationTile(
+            title: 'User Details',
+            icon: Icons.person,
+            onTap: () async {
+              await Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => UserDetailsPage(
-                          name: 'name',
-                          workId: 'work_id',
-                          role: 'role',
-                          residenceCity: 'residence_city',
-                          workCity: 'work_city',
-                        )),
+                  builder: (context) => const UserDetailsPage(
+                    name: 'name',
+                    workId: 'work_id',
+                    role: 'role',
+                    residenceCity: 'residence_city',
+                    workCity: 'work_city',
+                  ),
+                ),
               );
             },
           ),
-          const CustomLogoutIcon(),
+          const CustomLogoutButton(),
         ],
       ),
     );

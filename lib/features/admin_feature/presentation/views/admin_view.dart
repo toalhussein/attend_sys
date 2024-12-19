@@ -24,7 +24,7 @@ class _AdminPageState extends State<AdminPage> {
         title: 'Admin Page',
         actions: [
           SearchButton(),
-          CustomLogoutIcon(),
+          CustomLogoutButton(),
         ],
       ),
       body: Column(

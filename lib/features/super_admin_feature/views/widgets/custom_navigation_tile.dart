@@ -5,13 +5,15 @@ import 'package:flutter/material.dart';
 class CustomNavigationTile extends StatelessWidget {
   final String title;
   final IconData icon;
-  final Widget page;
+  final Widget? page;
+  final void Function()? onTap;
 
   const CustomNavigationTile({
     super.key,
     required this.title,
     required this.icon,
-    required this.page,
+    this.onTap,
+    this.page,
   });
 
   @override
@@ -19,12 +21,13 @@ class CustomNavigationTile extends StatelessWidget {
     return ListTile(
       leading: Icon(icon),
       title: Text(title),
-      onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => page),
-        );
-      },
+      onTap: onTap ??
+          () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => page!),
+            );
+          },
     );
   }
 }

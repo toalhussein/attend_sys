@@ -6,7 +6,7 @@ class DeleteUserPage extends StatefulWidget {
   const DeleteUserPage({super.key});
 
   @override
-  _DeleteUserPageState createState() => _DeleteUserPageState();
+  State<DeleteUserPage> createState() => _DeleteUserPageState();
 }
 
 class _DeleteUserPageState extends State<DeleteUserPage> {
