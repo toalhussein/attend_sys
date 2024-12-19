@@ -1,3 +1,4 @@
+import 'package:attend_sys/features/super_admin_feature/views/widgets/user_details.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
@@ -8,7 +9,7 @@ class UserSearchDelegate extends SearchDelegate<dynamic> {
   List<Widget>? buildActions(BuildContext context) {
     return [
       IconButton(
-        icon: Icon(Icons.clear),
+        icon: const Icon(Icons.clear),
         onPressed: () {
           query = '';
         },
@@ -19,7 +20,7 @@ class UserSearchDelegate extends SearchDelegate<dynamic> {
   @override
   Widget? buildLeading(BuildContext context) {
     return IconButton(
-      icon: Icon(Icons.arrow_back),
+      icon: const Icon(Icons.arrow_back),
       onPressed: () {
         close(context, null);
       },
@@ -35,11 +36,11 @@ class UserSearchDelegate extends SearchDelegate<dynamic> {
           .get(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return Center(child: CircularProgressIndicator());
+          return const Center(child: CircularProgressIndicator());
         }
 
         if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
-          return Center(child: Text('No users found'));
+          return const Center(child: Text('No users found'));
         }
 
         final users = snapshot.data!.docs;
@@ -48,12 +49,25 @@ class UserSearchDelegate extends SearchDelegate<dynamic> {
           itemCount: users.length,
           itemBuilder: (context, index) {
             final user = users[index];
-            final name = user['name'] ?? 'Unknown';
-            final workId = user['work_id'] ?? 'N/A';
-
             return ListTile(
-              title: Text(name),
-              subtitle: Text('Work ID: $workId'),
+              title: Text(user['name'] ?? 'Unknown'),
+              subtitle: Text('Work ID: ${user['work_id'] ?? 'N/A'}'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return UserDetailsPage(
+                        name: user['name'],
+                        workId: user['work_id'],
+                        role: user['role'],
+                        residenceCity: user['residence_city'],
+                        workCity: user['work_city'],
+                      );
+                    },
+                  ),
+                );
+              },
             );
           },
         );
@@ -64,7 +78,7 @@ class UserSearchDelegate extends SearchDelegate<dynamic> {
   @override
   Widget buildSuggestions(BuildContext context) {
     if (query.isEmpty) {
-      return Center(
+      return const Center(
         child: Text('Search for a user by their Work ID'),
       );
     }
@@ -73,11 +87,11 @@ class UserSearchDelegate extends SearchDelegate<dynamic> {
       stream: _firestore
           .collection('users')
           .where('work_id', isGreaterThanOrEqualTo: query)
-          .where('work_id', isLessThanOrEqualTo: query + '\uf8ff')
+          .where('work_id', isLessThanOrEqualTo: '$query\uf8ff')
           .snapshots(),
       builder: (context, snapshot) {
         if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
-          return Center(child: Text('No Users available'));
+          return const Center(child: Text('No Users available'));
         }
 
         final suggestions = snapshot.data!.docs;
@@ -86,15 +100,26 @@ class UserSearchDelegate extends SearchDelegate<dynamic> {
           itemCount: suggestions.length,
           itemBuilder: (context, index) {
             final suggestion = suggestions[index];
-            final name = suggestion['name'] ?? 'Unknown';
-            final workId = suggestion['work_id'] ?? 'N/A';
 
             return ListTile(
-              title: Text(name),
-              subtitle: Text('Work ID: $workId'),
+              title: Text(suggestion['name'] ?? 'Unknown'),
+              subtitle: Text('Work ID: ${suggestion['work_id'] ?? 'N/A'}'),
               onTap: () {
                 query = suggestion['work_id'];
-                showResults(context);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return UserDetailsPage(
+                        name: suggestion['name'],
+                        workId: suggestion['work_id'],
+                        role: suggestion['role'],
+                        residenceCity: suggestion['residence_city'],
+                        workCity: suggestion['work_city'],
+                      );
+                    },
+                  ),
+                );
               },
             );
           },

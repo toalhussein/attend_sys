@@ -1,64 +1,69 @@
+import 'package:attend_sys/core/widgets/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 
 class UserDetailsPage extends StatelessWidget {
-  const UserDetailsPage({super.key});
+  const UserDetailsPage(
+      {super.key,
+      required this.name,
+      required this.residenceCity,
+      required this.role,
+      required this.workCity,
+      required this.workId});
+
+  final String name;
+  final String residenceCity;
+  final String role;
+  final String workCity;
+  final String workId;
 
   @override
   Widget build(BuildContext context) {
-    const String name = "Ahmed";
-    const String residenceCity = "Sohag";
-    const String role = "Emp";
-    const String workCity = "Cairo";
-    const String workId = "12345";
-
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Profile Details'),
-      ),
+      appBar: const CustomAppBar(title: 'Employee Details'),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Card(
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(12),
           ),
-          elevation: 5,
-          child: const Padding(
-            padding: EdgeInsets.all(16.0),
+          elevation: 8,
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Text(
                   'Name: $name',
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                Divider(thickness: 1, height: 20),
+                const Divider(thickness: 1, height: 20),
                 Text(
                   'Residence City: $residenceCity',
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 16,
                   ),
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 Text(
                   'Role: $role',
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 16,
                   ),
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 Text(
                   'Work City: $workCity',
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 16,
                   ),
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 Text(
                   'Work ID: $workId',
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 16,
                   ),
                 ),

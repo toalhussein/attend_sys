@@ -1,40 +1,30 @@
-// ignore_for_file: prefer_const_constructors, library_private_types_in_public_api
-
-import 'package:attend_sys/features/admin_feature/presentation/views/widgets/user_search_delegate.dart';
+import 'package:attend_sys/core/widgets/custom_app_bar.dart';
+import 'package:attend_sys/core/widgets/search_button.dart';
 import 'package:attend_sys/features/admin_feature/presentation/views/widgets/users_list.dart';
 import 'package:flutter/material.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:intl/intl.dart';
 import '../../../../core/widgets/custom_logout_icon.dart';
 import 'widgets/admin_attendance_button.dart';
 import 'widgets/table_calender.dart';
 
-
 class AdminPage extends StatefulWidget {
   const AdminPage({super.key});
 
   @override
-  _AdminPageState createState() => _AdminPageState();
+  State<AdminPage> createState() => _AdminPageState();
 }
 
 class _AdminPageState extends State<AdminPage> {
-  TextEditingController searchController = TextEditingController();
-  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   final timeFormatter = DateFormat();
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Admin Page'),
+    return const Scaffold(
+      appBar: CustomAppBar(
+        title: 'Admin Page',
         actions: [
-          IconButton(
-            onPressed: () {
-              showSearch(context: context, delegate: UserSearchDelegate());
-            },
-            icon: const Icon(Icons.search),
-          ),
-          CustomLogoutIcon()
+          SearchButton(),
+          CustomLogoutIcon(),
         ],
       ),
       body: Column(
@@ -42,13 +32,12 @@ class _AdminPageState extends State<AdminPage> {
           CustomTableCalender(),
           Expanded(
             child: Padding(
-              padding: const EdgeInsets.all(16.0),
+              padding: EdgeInsets.all(16.0),
               child: Column(
+                spacing: 32,
                 children: [
                   AdminAttendanceButton(),
-                  const SizedBox(height: 16),
-                  const SizedBox(height: 16),
-                  UsersList(firestore: _firestore),
+                  UsersList(),
                 ],
               ),
             ),

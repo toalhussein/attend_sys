@@ -14,8 +14,6 @@ class SuperAdminPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final FirebaseFirestore firestore = FirebaseFirestore.instance;
-
     return Scaffold(
       appBar: const SuperAdminAppBar(),
       drawer: const SuperAdminDrawer(),
@@ -23,7 +21,9 @@ class SuperAdminPage extends StatelessWidget {
         children: [
           const CustomTableCalender(),
           const AdminAttendanceButton(),
-          Expanded(child: UsersList(firestore: firestore)),
+          Expanded(
+            child: UsersList(),
+          ),
         ],
       ),
     );

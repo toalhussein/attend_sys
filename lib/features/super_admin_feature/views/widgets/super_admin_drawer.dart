@@ -53,7 +53,14 @@ class SuperAdminDrawer extends StatelessWidget {
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => const UserDetailsPage()),
+                MaterialPageRoute(
+                    builder: (context) => UserDetailsPage(
+                          name: 'name',
+                          workId: 'work_id',
+                          role: 'role',
+                          residenceCity: 'residence_city',
+                          workCity: 'work_city',
+                        )),
               );
             },
           ),

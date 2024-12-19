@@ -10,13 +10,11 @@ import 'package:flutter/material.dart';
 class UsersList extends StatelessWidget {
   const UsersList({
     super.key,
-    required FirebaseFirestore firestore,
-  }) : _firestore = firestore;
-
-  final FirebaseFirestore _firestore;
+  });
 
   @override
   Widget build(BuildContext context) {
+    final FirebaseFirestore _firestore = FirebaseFirestore.instance;
     return StreamBuilder(
       stream: _firestore.collection('users').snapshots(),
       builder: (context, users) {
@@ -32,12 +30,7 @@ class UsersList extends StatelessWidget {
                 itemCount: users.data!.docs.length,
                 itemBuilder: (context, index) {
                   return StreamBuilder(
-                    stream: _firestore
-                        .collection('users')
-                        .doc(users.data!.docs[index].id)
-                        .collection('records')
-                        .doc(SignRecord.getFormattedDate(value))
-                        .snapshots(),
+                    stream: getRecordsStream(_firestore, users, index, value),
                     builder: (context, snapshot) {
                       if (snapshot.hasError) {
                         return Center(child: Text('Error data'));
@@ -73,7 +66,7 @@ class UsersList extends StatelessWidget {
                             lat: snapshot.data?.data()?['location']
                                     ?['latitude'] ??
                                 0,
-                                outLang: snapshot.data?.data()?['out_location']
+                            outLang: snapshot.data?.data()?['out_location']
                                     ?['longitude'] ??
                                 0,
                             outLat: snapshot.data?.data()?['out_location']
@@ -91,5 +84,18 @@ class UsersList extends StatelessWidget {
         }
       },
     );
+  }
+
+  Stream<DocumentSnapshot<Map<String, dynamic>>> getRecordsStream(
+      FirebaseFirestore _firestore,
+      AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> users,
+      int index,
+      DateTime value) {
+    return _firestore
+        .collection('users')
+        .doc(users.data!.docs[index].id)
+        .collection('records')
+        .doc(SignRecord.getFormattedDate(value))
+        .snapshots();
   }
 }

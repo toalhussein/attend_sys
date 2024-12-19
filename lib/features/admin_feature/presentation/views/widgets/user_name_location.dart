@@ -6,12 +6,17 @@ class UserNameAndLocation extends StatelessWidget {
     super.key,
     required this.userName,
     required this.lat,
-    required this.lang, required this.color,
+    required this.lang,
+    required this.fontColor,
+    this.fontSize = 16,
+    required this.buttonColor,
   });
-  final Color color;
+  final Color fontColor;
   final String userName;
   final double lat;
   final double lang;
+  final double? fontSize;
+  final Color buttonColor;
 
   @override
   Widget build(BuildContext context) {
@@ -20,10 +25,10 @@ class UserNameAndLocation extends StatelessWidget {
         Expanded(
           child: Text(
             userName,
-            style: const TextStyle(
-              fontSize: 16,
+            style: TextStyle(
+              fontSize: fontSize,
               fontWeight: FontWeight.bold,
-              color: Colors.black87,
+              color: fontColor,
             ),
           ),
         ),
@@ -34,7 +39,7 @@ class UserNameAndLocation extends StatelessWidget {
           },
           icon: Icon(
             Icons.location_on,
-            color: color,
+            color: buttonColor,
             size: 28,
           ),
         ),
