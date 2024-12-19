@@ -1,8 +1,10 @@
 import 'package:attend_sys/features/admin_feature/presentation/views/admin_view.dart';
+import 'package:attend_sys/features/login_feature/presentation/views%20model/login_cubit.dart';
 import 'package:attend_sys/features/super_admin_feature/views/super_admin.dart';
 import 'package:attend_sys/features/user_feature/presentation/views/user_view.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'features/login_feature/presentation/views/login_view.dart';
 
@@ -19,9 +21,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: getHomePage(),
+    return BlocProvider(
+      create: (context) => LoginCubit(),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: getHomePage(),
+      ),
     );
   }
 

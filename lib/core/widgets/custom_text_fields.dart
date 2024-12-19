@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 class CustomTextField extends StatelessWidget {
   const CustomTextField({
     super.key,
-    required TextEditingController workIdController, required this.labelText, this.obscureText,
+    required TextEditingController workIdController,
+    required this.labelText,
+    this.obscureText,
   }) : _workIdController = workIdController;
 
   final TextEditingController _workIdController;
@@ -14,12 +16,19 @@ class CustomTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextFormField(
       controller: _workIdController,
-      decoration:  InputDecoration(
+      decoration: InputDecoration(
         labelText: labelText,
-        border: const OutlineInputBorder(),
-
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(16),
+        ),
       ),
-      obscureText: false,
+      obscureText: obscureText ?? false,
+      validator: (value) {
+        if (value!.isEmpty) {
+          return 'Required Field';
+        }
+        return null;
+      },
     );
   }
 }
