@@ -1,4 +1,3 @@
-import 'package:attend_sys/core/app_snackbars.dart';
 import 'package:attend_sys/core/record.dart';
 import 'package:attend_sys/features/user_feature/presentation/views/widgets/in_and_our_button.dart';
 import 'package:flutter/material.dart';
@@ -20,24 +19,14 @@ class AttendanceCard extends StatelessWidget {
           children: [
             InAndOurButton(
               onPressed: () {
-                SignRecord.attendance();
-                AppSnackbars.showSuccessSnackbar(
-                  context,
-                  'Success Attendance',
-                  'Success Operation',
-                );
+                SignRecord.attendance(context);
               },
               buttonName: 'In',
               buttonColor: Colors.green,
             ),
             InAndOurButton(
               onPressed: () {
-                SignRecord.departure();
-                AppSnackbars.showSuccessSnackbar(
-                  context,
-                  'Success Departure',
-                  'Success Operation',
-                );
+                SignRecord.departure(context);
               },
               buttonName: 'Out',
               buttonColor: Colors.red,

@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-
-import '../../../../../core/app_snackbars.dart';
 import '../../../../../core/record.dart';
 
 class AdminAttendanceButton extends StatelessWidget {
@@ -28,17 +26,13 @@ class AdminAttendanceButton extends StatelessWidget {
               children: [
                 ElevatedButton(
                   onPressed: () {
-                    SignRecord.attendance();
-                    AppSnackbars.showSuccessSnackbar(
-                        context, 'Success Attendance', 'Success Operation');
+                    SignRecord.attendance(context);
                   },
                   child: const Text('In'),
                 ),
                 ElevatedButton(
                   onPressed: () {
-                    SignRecord.departure();
-                    AppSnackbars.showSuccessSnackbar(
-                        context, 'Success Attendance', 'Success Operation');
+                    SignRecord.departure(context);
                   },
                   child: const Text('Out'),
                 ),

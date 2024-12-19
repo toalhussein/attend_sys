@@ -1,5 +1,3 @@
-// ignore_for_file: prefer_const_constructors, library_private_types_in_public_api
-
 import 'package:attend_sys/features/admin_feature/presentation/views/widgets/user_arrival_data.dart';
 import 'package:attend_sys/features/admin_feature/presentation/views/widgets/user_name_location.dart';
 import 'package:flutter/material.dart';
@@ -60,13 +58,15 @@ class UserDetailsCard extends StatelessWidget {
               color: Colors.grey,
               height: 20,
               thickness: 1,
-              indent: 0,
-              endIndent: 0,
+              indent: 20,
+              endIndent: 20,
             ),
-            UserArrivalData(
-              arrivalTime: arrivalTime,
-              departueTime: departTime,
-              workingTime: workingTime,
+            Center(
+              child: UserArrivalData(
+                arrivalTime: arrivalTime,
+                departueTime: departTime,
+                workingTime: workingTime,
+              ),
             ),
           ],
         ),

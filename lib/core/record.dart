@@ -1,8 +1,6 @@
-// ignore_for_file: deprecated_member_use
-
-import 'dart:developer';
-
+import 'package:attend_sys/core/app_snackbars.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -26,14 +24,17 @@ class SignRecord {
         return null;
       }
       return await Geolocator.getCurrentPosition(
-          desiredAccuracy: LocationAccuracy.high);
+        locationSettings: const LocationSettings(
+          accuracy: LocationAccuracy.high,
+        ),
+      );
     } catch (e) {
       Fluttertoast.showToast(msg: 'Error getting location: $e');
       return null;
     }
   }
 
-  static void attendance() async {
+  static void attendance(BuildContext context) async {
     final Position? position = await _getCurrentLocation();
     final SharedPreferences pref = await SharedPreferences.getInstance();
     if (position == null) {
@@ -44,7 +45,7 @@ class SignRecord {
     String today = getFormattedDate();
     final Map<String, dynamic> data = {
       'attendance': now,
-      'departure':'',
+      'departure': '',
       'location': {
         'latitude': position.latitude,
         'longitude': position.longitude,
@@ -61,15 +62,18 @@ class SignRecord {
           .doc(
             today,
           )
-          .set(data,SetOptions(mergeFields: ['attendance','location']));
-      Fluttertoast.showToast(
-          msg: 'Attendance recorded successfully at ${now.toLocal()}');
+          .set(data, SetOptions(mergeFields: ['attendance', 'location']));
+      AppSnackbars.showSuccessSnackbar(
+        context,
+        'Success Attendance',
+        'Success Operation',
+      );
     } catch (e) {
       Fluttertoast.showToast(msg: 'Error recording Attendance: $e');
     }
   }
 
-  static void departure() async {
+  static void departure(BuildContext context) async {
     final Position? position = await _getCurrentLocation();
     final SharedPreferences pref = await SharedPreferences.getInstance();
     if (position == null) {
@@ -78,9 +82,9 @@ class SignRecord {
 
     final DateTime now = DateTime.now();
     String today = getFormattedDate();
-     final Map<String, dynamic> data = {
+    final Map<String, dynamic> data = {
       'attendance': '',
-      'departure':now,
+      'departure': now,
       'out_location': {
         'latitude': position.latitude,
         'longitude': position.longitude,
@@ -97,10 +101,13 @@ class SignRecord {
           .doc(
             today,
           )
-          .set(data,SetOptions(mergeFields: ['out_location','departure']));
+          .set(data, SetOptions(mergeFields: ['out_location', 'departure']));
 
-      Fluttertoast.showToast(
-          msg: 'Departure recorded successfully at ${now.toLocal()}');
+      AppSnackbars.showSuccessSnackbar(
+        context,
+        'Success Departure',
+        'Success Operation',
+      );
     } catch (e) {
       Fluttertoast.showToast(msg: 'Error recording Departure: $e');
     }
@@ -112,11 +119,9 @@ class SignRecord {
 
     if (date == null) {
       String date = today.toString();
-      log(date.substring(0, 10));
       return date.substring(0, 10);
     } else {
       String fDate = date.toString();
-      log(fDate.substring(0, 10));
       return fDate.substring(0, 10);
     }
   }
