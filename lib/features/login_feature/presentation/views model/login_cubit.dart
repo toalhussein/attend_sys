@@ -11,7 +11,7 @@ class LoginCubit extends Cubit<LoginStates> {
     emit(LoginLoading());
     try {
       final QuerySnapshot snapshot =
-          getUser(workId: workId, password: password);
+          await getUser(workId: workId, password: password);
 
       checkUserAvailability(snapshot, workId);
     } catch (e) {
@@ -19,7 +19,8 @@ class LoginCubit extends Cubit<LoginStates> {
     }
   }
 
-  getUser({required String workId, required String password}) async {
+  Future<QuerySnapshot<Map<String, dynamic>>> getUser(
+      {required String workId, required String password}) async {
     return await _firestore
         .collection('users')
         .where('work_id', isEqualTo: workId)

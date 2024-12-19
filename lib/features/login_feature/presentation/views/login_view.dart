@@ -72,7 +72,7 @@ class _LoginPageState extends State<LoginPage> {
     }
   }
 
-  Future<void> _login() async {
+  void _login() {
     if (loginKey.currentState!.validate()) {
       BlocProvider.of<LoginCubit>(context).login(
         workId: _workIdController.text,
@@ -102,7 +102,7 @@ class _LoginPageState extends State<LoginPage> {
         return;
     }
 
-    Navigator.pushReplacement(
+    await Navigator.pushReplacement(
       context,
       MaterialPageRoute(builder: (context) => page),
     );
