@@ -1,5 +1,6 @@
-import 'package:attend_sys/features/user_feature/presentation/views/widgets/attendance_card.dart';
 import 'package:flutter/material.dart';
+
+import 'attendance_card.dart';
 
 class EmployeeBody extends StatelessWidget {
   const EmployeeBody({super.key});
