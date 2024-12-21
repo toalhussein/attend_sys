@@ -12,7 +12,7 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   final preferences = await SharedPreferences.getInstance();
-  LocalStorage.initialize(preferences);
+  LocalStorage._(preferences);
   runApp(const MyApp());
 }
 
@@ -54,9 +54,7 @@ class MyApp extends StatelessWidget {
 class LocalStorage {
   static late SharedPreferences userData;
 
-  LocalStorage._();
-
-  static void initialize(SharedPreferences preferences) {
+  LocalStorage._(SharedPreferences preferences) {
     userData = preferences;
   }
 }
