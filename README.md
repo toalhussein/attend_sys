@@ -28,6 +28,9 @@ Admins can manage employees, monitor attendance data in real-time, and view the 
 - Can track how many days an employee attended or was absent in a given month.
 - Can create new employee accounts using their unique ID.
 
+#### 🙋 Employee Role
+- Can register attendance using their GPS location.
+
 ---
 
 ## 🚀 Getting Started
