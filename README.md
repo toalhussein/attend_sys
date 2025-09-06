@@ -33,6 +33,49 @@ Admins can manage employees, monitor attendance data in real-time, and view the 
 
 ---
 
+## 👤 Admin Features
+
+- **Employee Management:** Add, edit, and delete employees.
+- **Attendance Monitoring:** View logs and statistics.
+- **Location Tracking:** Visualize check-in/out locations on Google Maps.
+- **Audit Logs:** Track when and from where employees access the system.
+
+---
+
+## 🙋‍♂️ Employee Features
+
+- **Secure Login:** Authenticate with Employee ID.
+- **Easy Check-In/Out:** Mark attendance with a single tap.
+- **Location Verification:** Attendance is only accepted if GPS is enabled and from a specified range of longtiude and latitude.
+
+---
+
+## 🛠️ Tech Stack
+
+- **Frontend:** Flutter (Dart)
+- **Backend:** Firebase Firestore, Firebase Auth
+- **Location:** GPS via device sensors
+- **Maps Integration:** Google Maps API
+- **Native Integrations:** Swift, CMake, C++, Shell scripts
+
+---
+
+## 📂 Project Structure
+
+```
+attend_sys/
+├── lib/           # Dart source code (UI & logic)
+├── android/       # Android-specific code & config
+├── ios/           # iOS-specific code & config
+├── assets/        # Images, icons, etc.
+├── scripts/       # Shell and CMake scripts
+├── pubspec.yaml   # Flutter dependencies
+```
+
+---
+
+
+
 ## 🚀 Getting Started
 
 ### Prerequisites
@@ -69,47 +112,6 @@ Admins can manage employees, monitor attendance data in real-time, and view the 
 
 ---
 
-## 🛠️ Tech Stack
-
-- **Frontend:** Flutter (Dart)
-- **Backend:** Firebase Firestore, Firebase Auth
-- **Location:** GPS via device sensors
-- **Maps Integration:** Google Maps API
-- **Native Integrations:** Swift, CMake, C++, Shell scripts
-
----
-
-## 📂 Project Structure
-
-```
-attend_sys/
-├── lib/           # Dart source code (UI & logic)
-├── android/       # Android-specific code & config
-├── ios/           # iOS-specific code & config
-├── assets/        # Images, icons, etc.
-├── scripts/       # Shell and CMake scripts
-├── pubspec.yaml   # Flutter dependencies
-```
-
----
-
-## 👤 Admin Features
-
-- **Employee Management:** Add, edit, and delete employees.
-- **Attendance Monitoring:** View logs and statistics.
-- **Location Tracking:** Visualize check-in/out locations on Google Maps.
-- **Audit Logs:** Track when and from where employees access the system.
-
----
-
-## 🙋‍♂️ Employee Features
-
-- **Secure Login:** Authenticate with Employee ID.
-- **Easy Check-In/Out:** Mark attendance with a single tap.
-- **Location Verification:** Attendance is only accepted if GPS is enabled and from a specified range of longtiude and latitude.
-
----
-
 ## 🤝 Contributing
 
 Contributions are welcome! Please fork the repository and create a pull request.
@@ -129,7 +131,3 @@ This project is licensed under the MIT License. See the [LICENSE](./LICENSE) fil
 ---
 
 > **If you find this project helpful, please star the repository!**
-
-
-#### 🙋 Employee Role
-- Can register attendance using their GPS location.
