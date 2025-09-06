@@ -50,6 +50,10 @@ Admins can manage employees, monitor attendance data in real-time, and view the 
 
 ---
 
+## Screenshots
+
+<img src="assets/screenshots/1.png" width="200"/> &nbsp;&nbsp;&nbsp; <img src="assets/screenshots/2.png" width="200"/> &nbsp;&nbsp;&nbsp; <img src="assets/screenshots/3.png" width="200"/> &nbsp;&nbsp;&nbsp; <img src="assets/screenshots/4.png" width="200"/> &nbsp;&nbsp;&nbsp; <img src="assets/screenshots/5.png" width="200"/> &nbsp;&nbsp;&nbsp;
+
 ## 🛠️ Tech Stack
 
 - **Frontend:** Flutter (Dart)
